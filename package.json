@@ -1,0 +1,12 @@
+{
+  "name": "@ronbravo/raylib-js",
+  "version": "0.1.0",
+  "description": "Binding browser side Javascript with the raylib game programming library.",
+  "main": "index.js",
+  "keywords": [],
+  "author": "ronbravo",
+  "license": "MIT",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
