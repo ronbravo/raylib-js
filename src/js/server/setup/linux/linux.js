@@ -3,6 +3,18 @@ import fs from 'fs-extra';
 import { homedir } from 'os';
 import { join, resolve } from 'path';
 
+export const EMSDK_NODE_VERSION = `/node/14.18.2_64bit/bin`;
+export const EMSDK_UPSTREAM     = `/upstream/emscripten`;
+
+export const BUILD_RAYLIB_HTML5 = `
+${ getEmSdkPath () }
+# echo $PATH
+echo "- building raylib for HTML5"
+cd src
+make clean
+make PLATFORM=PLATFORM_WEB
+`;
+
 export async function run (command, cb) {
   return new Promise (function (done, cancel) {
     let child, buffer;
@@ -27,7 +39,7 @@ export async function start () {
   let base, exists, pkg, result;
 
   try {
-    base = resolve (homedir (), 'raylib-projects');
+    base = getBasePath ();
     await fs.ensureDir (base);
     process.chdir (base);
 
@@ -52,13 +64,17 @@ export async function start () {
     // Grab the emscripten repo
     exists = await fs.pathExists (join (base, 'emsdk'))
     if (!exists) {
+      // Build and install the emsdk
       await run (`git clone https://github.com/emscripten-core/emsdk.git emsdk`);
       process.chdir ('./emsdk');
       await run (`git pull`);
       await run (`./emsdk install latest`);
       await run (`./emsdk activate latest`);
-      process.chdir ('..');
     }
+    else {
+      process.chdir ('./emsdk');
+    }
+    process.chdir ('..');
 
     // Grab the raylib repo
     exists = await fs.pathExists (join (base, 'raylib'))
@@ -66,11 +82,14 @@ export async function start () {
       await run (`git clone https://github.com/raysan5/raylib.git raylib`);
       process.chdir ('./raylib');
       await run (`git pull`);
-      await run (`cd raylib/src`);
-      await run (BUILD_RAYLIB_HTML5);
-      await run (`make clean`);
-      process.chdir ('..');
     }
+    else {
+      // Build raylib.
+      process.chdir ('./raylib');
+    }
+
+    await run (BUILD_RAYLIB_HTML5);
+    process.chdir ('..');
 
     // Done
     console.log ('- all done');
@@ -92,27 +111,12 @@ export function isInstalled (str) {
 
 start ();
 
-export const BUILD_RAYLIB_HTML5 = `
-- building raylib for HTML5
-. ~/raylib-projects/emsdk/emsdk_env.sh
-make PLATFORM=PLATFORM_WEB
-`;
+export function getBasePath () {
+  return resolve (homedir (), 'tm-drive', 'build', 'raylib-projects');
+}
 
-
-
-
-
-
-// child.stdout.on ('data', (data) => {
-//   if (!cb) {
-//     console.log (data.toString ());
-//   }
-//   else {
-//     buffer = buffer + data.toString ();
-//   }
-// });
-
-// child.stderr.on ('error', (data) => {
-//   console.error (`SPAWN ERROR: \n${data}`);
-//   // cancel (data.toString ());
-// });
+export function getEmSdkPath () {
+  let emsdk;
+  emsdk = getBasePath () + '/emsdk';
+  return `export PATH=$PATH:${ emsdk }:${ emsdk + EMSDK_NODE_VERSION }:${ emsdk + EMSDK_UPSTREAM }`;
+}
