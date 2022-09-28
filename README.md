@@ -13,11 +13,15 @@ yarn add @ronbravo/raylib-js
 
 Then run the setup. **NOTE:** This setup currently only works for a Debian Linux environment.  In the future support for MacOS or Windows might be added.
 
-Then run the command below to begin the setup and build of the resources for the project. You will have to answer a few prompts along the way from the terminal.
+Next run the setup and build command for the project. You might have to answer a few terminal prompts along the way. Note that this installation might take awhile depending on your environment setup. This is because a lot of packages for the OS and nodejs have to be installed after which the building of raylib will happen.
+
+To setup run:
 
 ```
 npx rljs-setup
 ```
+
+then grab a cup of coffee...
 
 This should then make sure git, build-essentials, emsdk, and raylib is installed and setup.
 

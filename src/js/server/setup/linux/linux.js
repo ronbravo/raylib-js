@@ -15,51 +15,11 @@ make clean
 make PLATFORM=PLATFORM_WEB
 `;
 
-export async function run (command, cb) {
-  return new Promise (function (done, cancel) {
-    let child, buffer;
-
-    buffer = '';
-    child = spawn (command, {
-      stdio: 'inherit',
-      shell: true,
-    });
-
-    child.on ('exit', function () {
-      let result;
-      if (cb !== undefined) {
-        result = cb (buffer);
-      }
-      done (result);
-    });
-  });
-}
-
-export async function start () {
-  let base, exists, pkg, result;
+export async function buildRaylib () {
+  let base, exists;
 
   try {
     base = getBasePath ();
-    await fs.ensureDir (base);
-    process.chdir (base);
-
-    // Ensure build-essential is installed
-    pkg = 'build-essential';
-    result = await run (`dpkg -s ${pkg}`, isInstalled);
-    if (!result) { await run (`sudo apt-get install ${pkg}`); }
-
-    // Ensure git is installed
-    pkg = 'git';
-    result = await run (`dpkg -s ${pkg}`, isInstalled);
-    if (!result) { await run (`sudo apt-get install ${pkg}`); }
-
-    // Ensure build-essential is installed
-    pkg = 'cmake';
-    result = await run (`dpkg -s ${pkg}`, isInstalled);
-    if (!result) { await run (`sudo apt-get install ${pkg}`); }
-
-    // Install raylib build dependencies.
-    result = await run (`sudo apt install libasound2-dev mesa-common-dev libx11-dev libxrandr-dev libxi-dev xorg-dev libgl1-mesa-dev libglu1-mesa-dev`);
 
     // Grab the emscripten repo
     exists = await fs.pathExists (join (base, 'emsdk'))
@@ -95,8 +55,19 @@ export async function start () {
     console.log ('- all done');
   }
   catch (err) {
-    console.log (err.message);
+    console.error (err.message);
+    console.error (err);
   }
+}
+
+export function getBasePath () {
+  return resolve (homedir (), 'tm-drive', 'build', 'raylib-projects');
+}
+
+export function getEmSdkPath () {
+  let emsdk;
+  emsdk = getBasePath () + '/emsdk';
+  return `export PATH=$PATH:${ emsdk }:${ emsdk + EMSDK_NODE_VERSION }:${ emsdk + EMSDK_UPSTREAM }`;
 }
 
 export function isInstalled (str) {
@@ -109,14 +80,56 @@ export function isInstalled (str) {
   }
 }
 
-start ();
-
-export function getBasePath () {
-  return resolve (homedir (), 'tm-drive', 'build', 'raylib-projects');
+export async function installPackage (pkg) {
+  let result;
+  result = await run (`dpkg -s ${pkg}`, isInstalled);
+  if (!result) { await run (`sudo apt-get install ${pkg}`); }
 }
 
-export function getEmSdkPath () {
-  let emsdk;
-  emsdk = getBasePath () + '/emsdk';
-  return `export PATH=$PATH:${ emsdk }:${ emsdk + EMSDK_NODE_VERSION }:${ emsdk + EMSDK_UPSTREAM }`;
+export async function run (command, cb) {
+  return new Promise (function (done, cancel) {
+    let child, buffer;
+
+    buffer = '';
+    child = spawn (command, {
+      stdio: 'inherit',
+      shell: true,
+    });
+
+    child.on ('exit', function () {
+      let result;
+      if (cb !== undefined) {
+        result = cb (buffer);
+      }
+      done (result);
+    });
+  });
+}
+
+export async function setupRaylib () {
+  let base;
+
+  try {
+    base = getBasePath ();
+    await fs.ensureDir (base);
+    process.chdir (base);
+
+    // Ensure build-essential is installed
+    await installPackage ('build-essential');
+
+    // Ensure git is installed
+    await installPackage ('git');
+
+    // Ensure build-essential is installed
+    await installPackage ('cmake');
+
+    // Install raylib build dependencies.
+    await run (`sudo apt install --assume-yes libasound2-dev mesa-common-dev libx11-dev libxrandr-dev libxi-dev xorg-dev libgl1-mesa-dev libglu1-mesa-dev`);
+
+    await buildRaylib ();
+  }
+  catch (err) {
+    console.error (err.message);
+    console.error (err);
+  }
 }
