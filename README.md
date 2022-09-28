@@ -19,7 +19,7 @@ Next run the setup and build command for the project where you will be ased to e
 npx rljs-setup
 ```
 
-Note that this installation might take awhile depending on your environment setup. This is because a lot of packages for the OS and nodejs have to be installed after which the building of raylib will happen. So go grab a cup of coffee...
+Note that this installation might take awhile (roughly 15 minutes or so...) depending on your environment setup. This is because a lot of packages for the OS and nodejs have to be installed after which the building of raylib will happen. So go grab a cup of coffee...
 
 This should then make sure git, build-essentials, emsdk, and raylib is installed and setup.
 

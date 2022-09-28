@@ -1,3 +1,2 @@
 #!/usr/bin/env node
-// import '../../setup/linux/index.js';
-console.log ('- build placeholder...');
+import '../../command/build/linux/index.js';

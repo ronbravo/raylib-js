@@ -1,2 +1,2 @@
 #!/usr/bin/env node
-import '../../setup/linux/setup.js';
+import '../../command/setup/linux/setup.js';
