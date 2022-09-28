@@ -1,12 +1,28 @@
 {
   "name": "@ronbravo/raylib-js",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "description": "Binding browser side Javascript with the raylib game programming library.",
   "main": "index.js",
   "keywords": [],
   "author": "ronbravo",
   "license": "MIT",
+  "type": "module",
+  "bin": {
+    "rljs-setup": "./src/js/server/cli/setup-linux.js"
+  },
   "scripts": {
+    "dev": "vite public --config vite.config.js",
+    "setup": "node src/js/server/setup/linux/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "arrgv": "^1.0.2",
+    "fs-extra": "^10.1.0",
+    "uikit": "^3.15.10",
+    "vue": "^3.2.39"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^3.1.0",
+    "vite": "^3.1.3"
   }
 }
