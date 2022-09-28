@@ -11,7 +11,9 @@ npm install @ronbravo/raylib-js
 yarn add @ronbravo/raylib-js
 ```
 
-Then run the setup. **NOTE:** This setup currently only works for a Debian Linux environment. In the future support for MacOS or Windows might be added.
+Then run the setup. **NOTE:** This setup currently only works for a Debian Linux environment.  In the future support for MacOS or Windows might be added.
+
+Then run the command below to begin the setup and build of the resources for the project. You will have to answer a few prompts along the way from the terminal.
 
 ```
 npx rljs-setup
