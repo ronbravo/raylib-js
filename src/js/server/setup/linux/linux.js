@@ -83,7 +83,7 @@ export function isInstalled (str) {
 export async function installPackage (pkg) {
   let result;
   result = await run (`dpkg -s ${pkg}`, isInstalled);
-  if (!result) { await run (`sudo apt-get install ${pkg}`); }
+  if (!result) { await run (`sudo apt-get install --assume-yes ${pkg}`); }
 }
 
 export async function run (command, cb) {
