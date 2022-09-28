@@ -65,12 +65,11 @@ export async function start () {
     await run (`git pull`);
     await run (`./emsdk install latest`);
     await run (`./emsdk activate latest`);
-    await run (`source ./emsdk_env.sh`);
+    await run (`source ${join (base, 'emsdk')}/emsdk_env.sh`);
 
     console.log ('- all done');
   }
   catch (err) {
-    console.log ('***********dfsdfsdfs')
     console.log (err.message);
   }
 }
