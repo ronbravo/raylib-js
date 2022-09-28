@@ -61,6 +61,12 @@ export async function start () {
       await run (`git clone https://github.com/emscripten-core/emsdk.git`);
     }
 
+    process.chdir ('./emsdk');
+    await run (`git pull`);
+    await run (`./emsdk install latest`);
+    await run (`./emsdk activate latest`);
+    await run (`source ./emsdk_env.sh`);
+
     console.log ('- all done');
   }
   catch (err) {
