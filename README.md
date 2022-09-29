@@ -1,5 +1,8 @@
 # Raylib-Js
 
+**NOTE:** Please do **NOT** use this library yet...
+> This library is **not** ready for use. Once it is released (hopefully by November of 2022) then this doc will be updated with a better way to install and run.
+
 Binding browser side Javascript with the raylib game programming library.
 
 ## Install and Setup

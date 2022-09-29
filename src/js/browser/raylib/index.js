@@ -20,7 +20,7 @@ export function startRaylib () {
 }
 
 export function testGame () {
-  initWindow (320, 240, 'Bob');
+  initWindow (320, 240, 'Test Game 1');
 
   beginDrawing ();
   clearBackground ();
@@ -29,6 +29,6 @@ export function testGame () {
 
   setTimeout (() => {
     closeWindow ();
-    initWindow (640, 480, 'Bob');
+    initWindow (640, 480, 'Test Game 2');
   }, 5000);
 }

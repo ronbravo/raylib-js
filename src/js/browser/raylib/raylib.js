@@ -23,5 +23,6 @@ export function endDrawing () {
 }
 
 export function initWindow (width, height, title) {
+  document.title = title;
   rl.InitWindow (width, height, title);
 }
