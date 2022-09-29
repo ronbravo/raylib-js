@@ -1,6 +1,6 @@
-import { createApp } from 'vue'
-import App from './component/app/App.vue';
+import { createApp } from 'vue/dist/vue.esm-bundler';
+import App from '/~ui/vue/basic/app/App.vue';
 
 export function setupVue () {
-  createApp(App).mount('#app')
+  app = createApp (App).mount ('#app');
 }

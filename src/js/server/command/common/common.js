@@ -2,6 +2,9 @@ import { spawn } from 'child_process';
 import { homedir } from 'os';
 import { resolve } from 'path';
 
+export const EMSDK_NODE_VERSION = `/node/14.18.2_64bit/bin`;
+export const EMSDK_UPSTREAM     = `/upstream/emscripten`;
+
 export function getBasePath () {
   return resolve (homedir (), 'tm-drive', 'build', 'raylib-projects');
 }

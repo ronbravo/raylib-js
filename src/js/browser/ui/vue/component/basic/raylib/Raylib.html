@@ -1,0 +1,32 @@
+<div class="raylib-main-area">
+  <div>
+    <figure style="overflow:visible;" id="spinner">
+      <div class="spinner"></div>
+      <span style="margin-top:0.5em">emscripten</span>
+    </figure>
+    <div class="emscripten" id="status">Downloading...</div>
+    <div class="emscripten">
+      <progress value="0" max="100" id="progress" hidden=1></progress>
+    </div>
+    <div class="emscripten_border">
+      <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" tabindex=-1></canvas>
+    </div>
+  </div>
+  <div class="uk-card-small uk-card-default raylib-console">
+    <div class="uk-card-header">
+      <div class="uk-width-expand">
+        <h3 class="uk-card-title uk-margin-remove-bottom">Console</h3>
+      </div>
+    </div>
+    <div class="uk-card-body">
+      <textarea class="uk-textarea emscripten" id="output" rows="8" placeholder="Textarea"></textarea>
+    </div>
+    <div class="uk-card-footer">
+      <div class="emscriptends">
+        <label><input class="uk-checkbox" type="checkbox" id="resize">Resize canvas</label>
+        <label><input class="uk-checkbox" type="checkbox" id="pointerLock" checked>Lock/hide mouse pointer</label>
+        <button class="uk-button uk-button-default" onclick="Module.requestFullscreen(document.getElementById('pointerLock').checked, document.getElementById('resize').checked)">Fullscreen</button>
+      </div>
+    </div>
+  </div>
+</div>

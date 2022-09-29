@@ -3,9 +3,9 @@ import Icons from 'uikit/dist/js/uikit-icons';
 import 'uikit/dist/css/uikit.min.css';
 import './style.less';
 
-import { setupVue } from './ui/vue';
+import { setupVue } from '/~ui/vue';
 
-export function start () {
+export function defaultStartup () {
   // loads the Icon plugin
   UIkit.use (Icons);
 
@@ -19,4 +19,11 @@ export function start () {
   setupVue ();
 }
 
-start ();
+export function start (startup) {
+  if (startup) {
+    startup ();
+  }
+  else {
+    defaultStartup ();
+  }
+}

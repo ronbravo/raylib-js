@@ -6,9 +6,6 @@ import {
   run,
 } from '../../common/index.js';
 
-export const EMSDK_NODE_VERSION = `/node/14.18.2_64bit/bin`;
-export const EMSDK_UPSTREAM     = `/upstream/emscripten`;
-
 export const BUILD_RAYLIB_HTML5 = `
 ${ getEmSdkPath () }
 # echo $PATH
@@ -62,16 +59,6 @@ export async function buildRaylib () {
     console.error (err);
   }
 }
-
-// export function getBasePath () {
-//   return resolve (homedir (), 'tm-drive', 'build', 'raylib-projects');
-// }
-
-// export function getEmSdkPath () {
-//   let emsdk;
-//   emsdk = getBasePath () + '/emsdk';
-//   return `export PATH=$PATH:${ emsdk }:${ emsdk + EMSDK_NODE_VERSION }:${ emsdk + EMSDK_UPSTREAM }`;
-// }
 
 export function isInstalled (str) {
   if (str) {

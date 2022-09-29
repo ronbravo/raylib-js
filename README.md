@@ -32,3 +32,31 @@ This project can be used without the auto setup script. One can manually setup t
 * `build-essential`
 * `emsdk`
 * `raylib` - must be buildable with WASM (desktop build is optional)
+
+## Resources
+
+### Raylib
+
+* [Raylib](https://www.raylib.com/)
+* [Raylib Cheatsheet](https://www.raylib.com/cheatsheet/cheatsheet.html)
+* [Working on GNU Linux](https://github.com/raysan5/raylib/wiki/Working-on-GNU-Linux)
+* [Working for Web (HTML5)](https://github.com/raysan5/raylib/wiki/Working-for-Web-(HTML5))
+
+### WebAssembly
+
+* [Mozilla Tutorials on WebAssembly](https://developer.mozilla.org/en-US/docs/WebAssembly/Concepts)
+* [Emscripten](https://emscripten.org/index.html) - A toolchain for building WebAssembly
+* [WASMFiddle](https://wasdk.github.io/WasmFiddle/)
+
+### Javascript
+
+* [VueJs](https://vuejs.org/) - Used to build out the UI environment
+* [UIKit](https://getuikit.com/docs/card) - Styled components for the UI
+* [AnimeJs](https://animejs.com/documentation/) - Animation and keyframeing library
+
+### Misc
+
+* [ts2c - Typscript to C](https://github.com/andrei-markeev/ts2c)
+* [ts2c - Online Preview](https://andrei-markeev.github.io/ts2c/)
+* [Blitz3d](https://kippykip.com/b3ddocs/commands/index.htm) - Raylib api feels similar to working in Blitz3d
+* [QuickJs](https://bellard.org/quickjs/) - An embeddable JS Engine

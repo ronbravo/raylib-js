@@ -7,17 +7,7 @@ function setupWasmArea () {
   var Module = {
     preRun: [],
     postRun: [
-      function () {
-        console.log ('cool');
-
-        const int_sqrt = Module.cwrap ('int_sqrt', 'number', ['number']);
-        // console.log (int_sqrt (5));
-        // console.log (int_sqrt (50));
-
-        // setInterval (function () {
-        //   int_sqrt (10);
-        // }, 1000);
-      }
+      wrapRaylibFunctions,
     ],
     print: (function() {
       var element = document.getElementById('output');
@@ -86,7 +76,6 @@ function setupWasmArea () {
 }
 
 async function loadRaylib () {
-  // import ('/index.js');
   let dom;
   dom = document.createElement ('script');
   dom.async = true;
@@ -99,8 +88,83 @@ async function loadRaylib () {
   //   });
 }
 
+export function wrapRaylibFunctions () {
+  // test function
+  const rl_test = Module.cwrap ('rl_test', 'number', ['number']);
+
+  const closeWindow = Module.cwrap ('rl_CloseWindow', null, [null]);
+  const beginDrawing = Module.cwrap ('rl_BeginDrawing', null, [null]);
+  const clearBackground = Module.cwrap ('rl_ClearBackground', null, [null]);
+  const drawText = Module.cwrap ('rl_DrawText', null, ['string', 'number', 'number', 'number']);
+  const endDrawing = Module.cwrap ('rl_EndDrawing', null, [null]);
+  const initWindow = Module.cwrap ('rl_InitWindow', null, ['number', 'number', 'string']);
+
+  initWindow (320, 240, 'Bob');
+
+  beginDrawing ();
+  clearBackground ();
+  drawText ('Bobby...', 0, 0, 20);
+  endDrawing ();
+
+  // setInterval (function () {
+
+  //   endDraw ();
+  // }, 100);
+  // drawText ('Congrats! You created your first window!', 100, 100, 20, null);
+
+  setTimeout (() => {
+    closeWindow ();
+    initWindow (640, 480, 'Bob');
+  }, 5000);
+}
+
 export function startRaylib () {
   console.log ('starting raylib...');
   setupWasmArea ();
-  loadRaylib ();
+  setTimeout (() => {
+    loadRaylib ();
+  }, 100);
 }
+
+// setInterval (() => {
+//   console.log ('time...');
+//   int_sqrt (Date.now ());
+// }, 1000);
+
+// console.log (int_sqrt (5));
+// console.log (int_sqrt (50));
+// let value;
+// value = 0;
+// setInterval (function () {
+//   value = int_sqrt (value);
+//   console.log ('sqrt: ', value);
+// }, 1000);
+
+// const log = Module.cwrap ('rljs_Console_Log');
+
+// const pauseMainLoop = Module.cwrap ('rljs_Pause_Main_Loop');
+// const resumeMainLoop = Module.cwrap ('rljs_Resume_Main_Loop');
+
+// setTimeout (() => {
+//   resumeMainLoop ();
+
+// }, 100);
+
+// setTimeout (() => {
+//   resumeMainLoop ();
+// }, 200);
+
+// const exitApp = Module.cwrap ('rljs_ExitApp');
+// const initWindow = Module.cwrap ('rl_InitWindow', null, ['number', 'number', 'string']);
+
+// setInterval (() => {
+//   // initWindow (320, 240, 'Hello Bob');
+//   // exitApp ();
+//   console.log ('what...')
+//   log ();
+// }, 1000);
+
+// window.addEventListener ('click', function () {
+//   console.log ('hello world');
+//   int_sqrt (10);
+// })
