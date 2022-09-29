@@ -2,7 +2,6 @@
 #include "raylib.h"
 
 int main () {
-  printf ("- inside c app...\n");
   return 0;
 }
 

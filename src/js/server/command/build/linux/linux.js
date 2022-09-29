@@ -2,6 +2,7 @@ import { getEmSdkPath, run } from '../../common/index.js';
 import { EXPORTED_FUNCTIONS } from '../exported-functions.js';
 
 export const BUILD_OUTPUT   = `public/lib/raylib/raylib.html`;
+export const BUILD_STATS    = `public/lib/raylib/raylib.txt`;
 export const BUILD_SOURCE   = `src/c/raylib.c`;
 export const HTML_TEMPLATE  = `src/html/basic.html`;
 export const RAYLIB_PATH    = `~/tm-drive/build/raylib-projects/raylib`;
@@ -23,8 +24,8 @@ emcc -o ${ BUILD_OUTPUT } ${ BUILD_SOURCE } \
 `;
 
 export async function buildRaylibHtml5 () {
-  console.log ('cool');
   await run (BUILD_PROJECT_HTML5);
+  await run (`touch ${ BUILD_STATS }`);
 }
 
 export function getExportedMethods () {
@@ -32,9 +33,6 @@ export function getExportedMethods () {
 
   list = '_' + EXPORTED_FUNCTIONS.join (',_');
   return list;
-
-  console.log ('LIST:', list);
-  return `_main,_int_sqrt`;
 }
 
 // `

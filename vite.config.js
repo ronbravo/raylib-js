@@ -15,7 +15,7 @@ export default defineConfig({
     vue(),
     FullReload([
       'src/js/browser/**/*',
-      'public/lib/raylib/**/*',
+      'public/lib/raylib/raylib.txt',
     ]),
   ],
   resolve: {
