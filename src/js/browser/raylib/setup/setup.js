@@ -1,14 +1,19 @@
 import { wrapRaylibFunctions } from '../wrapper/wrapper';
 
-export function setupWasmArea () {
+export function setupWasmArea (onReady) {
   var statusElement = document.getElementById('status');
   var progressElement = document.getElementById('progress');
   var spinnerElement = document.getElementById('spinner');
 
   var Module = {
+    onRuntimeInitialized: function() {
+      // console.log('lerp result: ' + Module.lerp(1, 2, 0.5));
+      wrapRaylibFunctions ();
+      onReady ();
+    },
     preRun: [],
     postRun: [
-      wrapRaylibFunctions,
+      // wrapRaylibFunctions,
     ],
     print: (function() {
       var element = document.getElementById('output');
@@ -76,11 +81,14 @@ export function setupWasmArea () {
   globalThis.Module = Module;
 }
 
-export async function loadRaylib () {
+export async function loadRaylib (onLoad) {
   let dom;
   dom = document.createElement ('script');
   dom.async = true;
   dom.src = '/lib/raylib/raylib.js';
+  dom.onload = function () {
+    if (onLoad) { onLoad (); }
+  }
   document.body.appendChild (dom);
   // WebAssembly.instantiateStreaming (fetch ('index.wasm'), {})
   //   .then (results => {

@@ -2,6 +2,7 @@ export const EXPORTED_FUNCTIONS = [
   // Raylib-Js
   'main',
   'rl_test',
+  // 'rl_getColors',
 
   // Raylib
   'rl_BeginDrawing',
