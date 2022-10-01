@@ -1,4 +1,5 @@
-import { wrapRaylibFunctions } from '../wrapper/wrapper';
+import { wrapRaylibFunctions } from '/~raylib/wrapper/index.js';
+import { mainLoopFunction } from '/~raylib/raylib.js';
 
 export function setupWasmArea (onReady) {
   var statusElement = document.getElementById('status');
@@ -95,4 +96,11 @@ export async function loadRaylib (onLoad) {
   //     var sum = results.instance.exports.sumOfInts (32);
   //     console.log ('bob', sum);
   //   });
+}
+
+export function startRaylib () {
+  setupWasmArea (function () {
+    mainLoopFunction ();
+  });
+  loadRaylib ();
 }

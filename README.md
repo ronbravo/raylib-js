@@ -44,6 +44,8 @@ This installation might take some time (roughly 15 minutes or so...) depending o
 * [VueJs](https://vuejs.org/) - Used to build out the UI environment
 * [UIKit](https://getuikit.com/docs/card) - Styled components for the UI
 * [AnimeJs](https://animejs.com/documentation/) - Animation and keyframeing library
+* [Mozilla Requestframe](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame)
+* [Requestframe Tutorial](https://www.kirupa.com/html5/animating_with_requestAnimationFrame.htm)
 
 ### Misc
 
@@ -51,3 +53,5 @@ This installation might take some time (roughly 15 minutes or so...) depending o
 * [ts2c - Online Preview](https://andrei-markeev.github.io/ts2c/)
 * [Blitz3d](https://kippykip.com/b3ddocs/commands/index.htm) - Raylib api feels similar to working in Blitz3d
 * [QuickJs](https://bellard.org/quickjs/) - An embeddable JS Engine
+* [8bit Workshop](https://8bitworkshop.com/)
+

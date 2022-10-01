@@ -1,11 +1,8 @@
 #include <malloc.h>
 #include <stdio.h>
-#include "wrapper.h"
+#include "raylib-js.h"
+#include "raylib-wrapper.h"
 
 int main () {
   return 0;
-}
-
-int rl_test (int x) {
-  return (x + 1000);
 }
