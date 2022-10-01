@@ -56,4 +56,8 @@ This installation might take some time (roughly 15 minutes or so...) depending o
 * [Blitz3d](https://kippykip.com/b3ddocs/commands/index.htm) - Raylib api feels similar to working in Blitz3d
 * [QuickJs](https://bellard.org/quickjs/) - An embeddable JS Engine
 * [8bit Workshop](https://8bitworkshop.com/)
-
+* [blockbench](https://www.blockbench.net/)
+* [three.js](https://threejs.org/)
+* [PixiJs](https://pixijs.com/)
+* [ImpactJs](https://impactjs.com/)
+* [BabylonJs](https://www.babylonjs.com/)
