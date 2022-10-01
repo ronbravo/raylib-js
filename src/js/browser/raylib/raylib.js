@@ -19,7 +19,7 @@ export function createUpdateDrawFrameContext (framesPerSecond, callback) {
 
     function update () {
       setTimeout (function() {
-        console.log ('- updating and rendering');
+        // console.log ('- updating and rendering');
         callback ();
         requestAnimationFrame (update);
       }, fps);
@@ -44,7 +44,8 @@ export function mainLoopFunction () {
     // Render
     beginDrawing ();
     clearBackground (BLACK);
-    drawText ('Hello Gaming World!', x, 20, 20, LIGHTGRAY);
+    drawText ('Made with Raylib and Javascript', 20, 20, 20, LIGHTGRAY);
+    drawText ('Hello World!', x, 50, 20, LIGHTGRAY);
     endDrawing ();
   });
 }

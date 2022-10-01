@@ -3,7 +3,9 @@
 **NOTE:** Please do **NOT** use this library yet...
 > This library is **not** ready for use. Once it is released (hopefully by November of 2022) then this doc will be updated with a better way to install and run.
 
-Binding browser side Javascript with the raylib game programming library.
+Binding browser side Javascript with the raylib game programming library. The purpose in binding to browser side Javascript is to take advantage of development environmet tools (vitejs, nodemon, refresh on change, etc). Now this is not expected to run fast as the purpose is to allow an easy foot in the door and allow working with Javascript. As the developer matures and becomes more familiar with the Raylib API and programming in general, the hope is they begin to transition to C by porting some of their projects.
+
+Hopefully in the future this project will support a C workflow in the browser as to facilitate that process even more.
 
 ## Install and Setup
 
